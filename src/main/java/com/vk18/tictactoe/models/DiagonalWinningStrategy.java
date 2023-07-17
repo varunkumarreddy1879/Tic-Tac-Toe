@@ -31,6 +31,17 @@ public class DiagonalWinningStrategy implements WinningStrategy{
         }
     }
 
+    @Override
+    public void undo(int row,int col,Player player){
+        if(row==col){
+            leftToRightDiagonalHashMap.put(player.getSymbol(),leftToRightDiagonalHashMap.get(player.getSymbol())-1);
+        }
+
+        if(row+col==size-1){
+            rightToLeftDiagonalHashMap.put(player.getSymbol(),rightToLeftDiagonalHashMap.get(player.getSymbol())-1);
+        }
+    }
+
 
     public int getSize() {
         return size;

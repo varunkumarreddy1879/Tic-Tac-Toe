@@ -27,6 +27,10 @@ public class RowWinningStrategy implements WinningStrategy{
     }
 
 
+    @Override
+    public void undo(int row,int col,Player player){
+        rowHashMap.get(row).put(player.getSymbol(),rowHashMap.get(row).get(player.getSymbol())-1);
+    }
 
     public int getSize() {
         return size;

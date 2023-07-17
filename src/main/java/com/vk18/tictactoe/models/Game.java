@@ -171,12 +171,14 @@ public class Game {
     }
 
     public void undo() {
+        if(moves.size()==0){
+            return;
+        }
+        moves.get(moves.size()-1).getPlayer().undo(board,winningStrategies,this);
     }
 
     public void makeMove() {
         players.get(currentPlayerIndex).makeMove(board,winningStrategies,this);
     }
 
-    public void checkStatus() {
-    }
 }

@@ -1,5 +1,7 @@
 package com.vk18.tictactoe.models;
 
+import org.ietf.jgss.GSSManager;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -39,6 +41,13 @@ public class Player {
     }
 
     public void makeMove(Board board, List<WinningStrategy> winningStrategies,Game game) {
+        if(game.getMoves().size()==game.getSize() * game.getSize()){
+            game.setGameState(GAMESTATUS.DRAW);
+            System.out.println("Game is Draw");
+            System.out.println("=============================================================================");
+            return;
+        }
+
         Scanner sc=new Scanner(System.in);
         System.out.println(name+ " please enter the row number : ");
         int row=sc.nextInt();
@@ -90,4 +99,15 @@ public class Player {
         return true;
     }
 
+    public void undo(Board board, List<WinningStrategy> winningStrategies, Game game) {
+        Move lastMove=game.getMoves().get(game.getMoves().size()-1);
+
+        board.undo(lastMove.getCell().getRow(),lastMove.getCell().getCol());
+        game.getMoves().remove(game.getMoves().size()-1);
+
+        for(WinningStrategy winningStrategy:winningStrategies){
+            winningStrategy.undo(lastMove.getCell().getRow(),lastMove.getCell().getCol(),this);
+        }
+
+    }
 }

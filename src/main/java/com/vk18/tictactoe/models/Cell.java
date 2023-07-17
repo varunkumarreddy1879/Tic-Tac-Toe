@@ -49,4 +49,9 @@ public class Cell {
         setCellState(CELLSTATE.FILLED);
         setPlayer(player);
     }
+
+    public void undo() {
+        setCellState(CELLSTATE.EMPTY);
+        setPlayer(null);
+    }
 }

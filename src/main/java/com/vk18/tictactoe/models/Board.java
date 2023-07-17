@@ -53,4 +53,8 @@ public class Board {
     public void updateMove(Player player,int row,int col){
         grid.get(row).get(col).updateCell(player);
     }
+
+    public void undo(int row, int col) {
+        grid.get(row).get(col).undo();
+    }
 }

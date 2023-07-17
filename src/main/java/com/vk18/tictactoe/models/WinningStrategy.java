@@ -6,4 +6,5 @@ import java.util.List;
 public interface WinningStrategy {
     public void updateMove(int row,int col,Player player,Game game);
 
+    public void undo(int row, int col,Player player);
 }

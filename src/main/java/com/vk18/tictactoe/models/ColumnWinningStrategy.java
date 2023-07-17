@@ -25,6 +25,10 @@ public class ColumnWinningStrategy implements WinningStrategy{
         }
     }
 
+    @Override
+    public void undo(int row,int col,Player player){
+        columnHashMap.get(col).put(player.getSymbol(),columnHashMap.get(col).get(player.getSymbol())-1);
+    }
 
 
     public List<HashMap<Symbol, Integer>> getColumnHashMap() {
