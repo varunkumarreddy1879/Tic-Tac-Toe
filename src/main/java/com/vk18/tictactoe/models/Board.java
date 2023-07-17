@@ -9,7 +9,7 @@ public class Board {
 
     public Board(int size) {
         this.size = size;
-
+        this.grid=new ArrayList<>();
         for(int i=0;i<this.size;i++){
             List<Cell> list=new ArrayList<Cell>();
             for(int j=0;j<this.size;j++){
@@ -33,5 +33,24 @@ public class Board {
 
     public void setGrid(List<List<Cell>> grid) {
         this.grid = grid;
+    }
+
+    public void printBoard() {
+        for(List<Cell> arr:grid){
+            for(Cell cell:arr){
+                if(cell.getCellState().equals(CELLSTATE.FILLED)){
+                    System.out.print("| "+cell.getPlayer().getSymbol().getCh()+" ");
+                }
+                else if(cell.getCellState().equals(CELLSTATE.EMPTY)){
+                    System.out.print("| - ");
+                }
+
+            }
+            System.out.println("|");
+        }
+    }
+
+    public void updateMove(Player player,int row,int col){
+        grid.get(row).get(col).updateCell(player);
     }
 }

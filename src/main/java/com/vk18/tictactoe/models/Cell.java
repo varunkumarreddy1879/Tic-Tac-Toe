@@ -10,7 +10,7 @@ public class Cell {
         this.row = row;
         this.col = col;
         player = null;
-        cellState=null;
+        cellState=CELLSTATE.EMPTY;
     }
 
     public int getRow() {
@@ -43,5 +43,10 @@ public class Cell {
 
     public void setCellState(CELLSTATE cellState) {
         this.cellState = cellState;
+    }
+
+    public void updateCell(Player player) {
+        setCellState(CELLSTATE.FILLED);
+        setPlayer(player);
     }
 }
